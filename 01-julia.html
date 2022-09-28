@@ -1,0 +1,1017 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jupyter Notebooks und Julia &#8212; Arbeiten mit Julia und Jupyter Notebooks</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Vorbemerkungen" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Arbeiten mit Julia und Jupyter Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Vorbemerkungen
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Jupyter Notebooks und Julia
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/01-julia.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/matthiasbaitsch/julia_numerik_quickstart"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matthiasbaitsch/julia_numerik_quickstart/main?urlpath=tree/01-skript/01-julia.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variablen-operatoren-und-mathematische-funktionen">
+   Variablen, Operatoren und mathematische Funktionen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel">
+     Beispiel
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#listen">
+   Listen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ranges">
+     Ranges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kontrollstrukturen">
+   Kontrollstrukturen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verzweigungen-mit-if-elif-und-else">
+     Verzweigungen mit if, elif und else
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#logische-ausdrucke">
+       Logische Ausdrücke
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schleifen">
+     Schleifen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#funktionen">
+   Funktionen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#funktionen-in-eigenen-dateien">
+     Funktionen in eigenen Dateien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrere-ruckgabewerte">
+     Mehrere Rückgabewerte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametrisierte-funktionen">
+     Parametrisierte Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weiterfuhrende-themen">
+   Weiterführende Themen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrfachvariablen">
+     Mehrfachvariablen
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="jupyter-notebooks-und-julia">
+<h1>Jupyter Notebooks und Julia<a class="headerlink" href="#jupyter-notebooks-und-julia" title="Permalink to this headline">¶</a></h1>
+<p>Ein Jupyter Notebook ist ein Dokument, das sowohl Text als auch Programmcode enthalten kann.
+In einer geeigneten Umgebung (z.B. browserbasiert in
+<a class="reference external" href="https://mybinder.org/v2/gh/jupyterlab/jupyterlab-demo/master?urlpath=lab/tree/demo">JupyterLab</a>
+oder einer Entwicklungsumgebung wie
+<a class="reference external" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Visual Studio Code</a>
+)
+können damit interaktive Dokumente erstellt werden, die sich in verschiedene Formate exportieren lassen (HTML, PDF, LaTeX und Folien für Präsentationen).</p>
+<p>Ein Jupyter Notebook besteht aus Zellen die entweder</p>
+<ul class="simple">
+<li><p>Text in <a class="reference external" href="https://www.ibm.com/docs/en/db2-event-store/2.0.0?topic=notebooks-markdown-jupyter-cheatsheet">Markdown-Schreibweise</a> oder</p></li>
+<li><p>Programmcode (bei uns Julia)</p></li>
+</ul>
+<p>enthalten können. Textzellen lassen sich mit einem Doppelklick bearbeiten, mit <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> schließen Sie die Bearbeitung ab.</p>
+<div class="section" id="variablen-operatoren-und-mathematische-funktionen">
+<h2>Variablen, Operatoren und mathematische Funktionen<a class="headerlink" href="#variablen-operatoren-und-mathematische-funktionen" title="Permalink to this headline">¶</a></h2>
+<p>Variablen enthalten Werte, im Beispiel unten eine Zeichenkette, eine Fließkommazahl und eine ganze Zahl. Die Ausgabe erfolgt mit der <code class="docutils literal notranslate"><span class="pre">print</span></code> - Funktion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s">&quot;Hallo&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">3.1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot; a = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&quot;, x = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&quot;, y = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> a = Hallo, x = 3.1, y = 42
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für numerische Argumente haben die Operatoren <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code> die üblichen Bedeutungen. Zusätzlich gibt es</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> - Rest einer Division</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">÷</span></code> - Division mit Runden nach unten</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code> - Potenz</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">7</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">7</span> <span class="o">÷</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">7</span> <span class="o">^</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+343
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es stehen die gängigen mathematischen Funktionen wie <code class="docutils literal notranslate"><span class="pre">sqrt</span></code>, <code class="docutils literal notranslate"><span class="pre">pow</span></code>, <code class="docutils literal notranslate"><span class="pre">sin</span></code>, <code class="docutils literal notranslate"><span class="pre">cos</span></code> sowie mathematische Konstanten, z.B. <span class="math notranslate nohighlight">\(\pi\)</span> und <span class="math notranslate nohighlight">\(e\)</span> zur Verfügung.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="nb">pi</span><span class="p">,</span> <span class="s">&quot;, sin(pi) = &quot;</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="nb">pi</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="nb">ℯ</span><span class="p">,</span> <span class="s">&quot;, log(ℯ) = &quot;</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="nb">ℯ</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+2.718281828459045
+π, sin(pi) = 0.0
+ℯ, log(ℯ) = 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufgabe:</p>
+<ul class="simple">
+<li><p>Was hat es mit dem Symbol ℯ auf sich?</p></li>
+</ul>
+<div class="section" id="beispiel">
+<h3>Beispiel<a class="headerlink" href="#beispiel" title="Permalink to this headline">¶</a></h3>
+<p>Die quadratische Gleichung <span class="math notranslate nohighlight">\(ax^2 + bx + c = 0\)</span> besitzt die Lösungen</p>
+<div class="math notranslate nohighlight">
+\[
+    x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]</div>
+<p>die hier in Julia berechnet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span>  <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;Lösungen: x1 = &quot;</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="s">&quot; und x2 = &quot;</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lösungen: x1 = -1.0 und x2 = 3.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="listen">
+<h2>Listen<a class="headerlink" href="#listen" title="Permalink to this headline">¶</a></h2>
+<p>Eine Liste in Julia kann man sich als eine Sequenz von Kästchen vorstellen. Jedes Kästchen kann beliebige Julia-Objekte enthalten, die beim Erzeugen der Liste
+in eckige Klammern geschrieben und durch Kommata getrennt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="nb">pi</span><span class="p">,</span> <span class="s">&quot;Hallo!&quot;</span><span class="p">,</span> <span class="mi">2021</span><span class="p">]</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;Liste l = &quot;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Liste l = Any[π, &quot;Hallo!&quot;, 2021]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir eine Liste ausgegeben, dann schreibt Julia den Datentyp der in der Liste enthaltenen Objekte dazu. Der Datentyp <code class="docutils literal notranslate"><span class="pre">Any</span></code> kann beliebige Werte enthalten.</p>
+<p>Der Zugriff auf den Inhalt der Kästchen erfolgt mit einem Index, wobei das erste Kästchen den Index <code class="docutils literal notranslate"><span class="pre">1</span></code> hat. Die Länge einer Liste erhält man
+mit der Funktion <code class="docutils literal notranslate"><span class="pre">len</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Inhalt der Liste l im zweiten Kästchen: &quot;</span><span class="p">,</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Auf Wiedersehen!&quot;</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Geänderte Liste: &quot;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Anzahl der Kästchen in l: &quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inhalt der Liste l im zweiten Kästchen: Hallo!
+Geänderte Liste: Any[π, &quot;Auf Wiedersehen!&quot;, 2021]
+Anzahl der Kästchen in l: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listen können auch Schritt für Schritt erzeugt werden. Es ist zum Beispiel möglich, mit einer leeren Liste zu beginnen und Kästchen anzuhängen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">append!</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;Bonjour!&quot;</span><span class="p">])</span>
+<span class="n">append!</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">1789</span><span class="p">)</span>
+<span class="n">append!</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="nb">ℯ</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Liste h = &quot;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Liste h = Any[&quot;Bonjour!&quot;, 1789, ℯ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufgabe:</p>
+<ul class="simple">
+<li><p>Was passiert, wenn Sie in Zeile zwei die eckigen Klammern weglassen?</p></li>
+</ul>
+<p>Es gibt vielfältige Möglichkeiten mit Listen zu Arbeiten, im Zweifelsfall hilft ein Blick in die
+<span class="xref myst">offizielle Dokumentation</span>. Hier ein paar Beispiele</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">([</span><span class="n">l</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
+<span class="n">println</span><span class="p">([</span><span class="n">l</span><span class="p">;</span> <span class="n">l</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="n">indexin</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="n">l</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">indexin</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="n">l</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector{Any}[[π, &quot;Auf Wiedersehen!&quot;, 2021], [π, &quot;Auf Wiedersehen!&quot;, 2021]]
+Any[π, &quot;Auf Wiedersehen!&quot;, 2021, π, &quot;Auf Wiedersehen!&quot;, 2021]
+fill(3)
+fill(nothing)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ranges">
+<h3>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<p>Ein nützliches Objekt, das sich ähnlich wie eine Liste verhält (aber keine ist), wird mit <code class="docutils literal notranslate"><span class="pre">range</span></code> erzeugt. Mit den ganzen Zahlen <code class="docutils literal notranslate"><span class="pre">a</span></code> und <code class="docutils literal notranslate"><span class="pre">b</span></code>
+liefert <code class="docutils literal notranslate"><span class="pre">a:b</span></code> die Sequenz</p>
+<div class="math notranslate nohighlight">
+\[
+    a, a + 1, \dots, b,
+\]</div>
+<p>die obere Grenze <code class="docutils literal notranslate"><span class="pre">b</span></code> ist also enthalten. Man kann mit der Form <code class="docutils literal notranslate"><span class="pre">a:inc:b</span></code> zusätzlich noch ein Inkrement angeben und erhält</p>
+<div class="math notranslate nohighlight">
+\[
+    a, a + inc, \dots, b.
+\]</div>
+<p>Eine Range ist ist in Julia eine eigenständiges Objekt, mit <code class="docutils literal notranslate"><span class="pre">collect</span></code> wird daraus ein Array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">7</span>
+<span class="n">println</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="mi">2</span><span class="o">:</span><span class="mi">3</span><span class="o">:</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Anzahl Elemente: &quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;r[1] = &quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;, r[2] = &quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;, ... , r[4] = &quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2:7
+[2, 3, 4, 5, 6, 7]
+[2, 5, 8]
+Anzahl Elemente: 6
+r[1] = 2, r[2] = 3, ... , r[4] = 5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="kontrollstrukturen">
+<h2>Kontrollstrukturen<a class="headerlink" href="#kontrollstrukturen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="verzweigungen-mit-if-elif-und-else">
+<h3>Verzweigungen mit if, elif und else<a class="headerlink" href="#verzweigungen-mit-if-elif-und-else" title="Permalink to this headline">¶</a></h3>
+<p>In einer <strong>bedingten Anweisung</strong> wird Programmcode wird nur dann ausgeführt, wenn eine Bedingung erfüllt ist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">33</span>
+
+<span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">100</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Die Zahl &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&quot; ist kleiner als 100 &quot;</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;b = &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;a = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Die Zahl 33 ist kleiner als 100 
+b = 133
+a = 33
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wenn nach dem <code class="docutils literal notranslate"><span class="pre">if</span></code> noch ein <code class="docutils literal notranslate"><span class="pre">else</span></code> kommt, dann spricht man von einer <strong>Alternative</strong>, der Block nach dem <code class="docutils literal notranslate"><span class="pre">else</span></code> wird ausgeführt, wenn
+die Bedingung nicht erfüllt ist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">433</span>
+
+<span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">100</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Die Zahl &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&quot; ist kleiner als 100&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">100</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Die Zahl &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&quot; ist nicht kleiner als 100&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;b = &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;a = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Die Zahl 433 ist nicht kleiner als 100
+b = 333
+a = 433
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mithilfe des Schlüsselworts <code class="docutils literal notranslate"><span class="pre">elseif</span></code> lassen sich <strong>Mehrfachverzweigungen</strong> realisieren. Hier nochmal das Beispiel der quadratischen
+Gleichung.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Eingabe</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># Diskriminante</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span>
+
+<span class="c"># Fälle</span>
+<span class="k">if</span> <span class="n">D</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">D</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">D</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Die Gleichung besitzt zwei Lösungen x1 = &quot;</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="s">&quot; und x2 = &quot;</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="k">elseif</span> <span class="n">D</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Die Gleichung besitzt eine Lösung x1 = &quot;</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Die Gleichung besitzt keine reellwertige Lösung&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Die Gleichung besitzt eine Lösung x1 = -1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logische-ausdrucke">
+<h4>Logische Ausdrücke<a class="headerlink" href="#logische-ausdrucke" title="Permalink to this headline">¶</a></h4>
+<p>Logische Ausdrücke werden meist mithilfe der Vergleichsoperatoren <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> realisiert. Mithilfe von <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code> und <code class="docutils literal notranslate"><span class="pre">!</span></code> lassen sich
+mehrere Bedingungen miteinander verknüpfen.</p>
+<p>Wir sehen das am Beispiel eines Schaltjahres:</p>
+<blockquote>
+<div><p>Every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, but these centurial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800, and 1900 are not leap years, but the years 1600 and 2000 are.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">1988</span>
+
+<span class="k">if</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Das Jahr &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&quot; ist ein Schaltjahr&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Kein Schaltjahr: &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Das Jahr 1988 ist ein Schaltjahr
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufgabe:</p>
+<ul class="simple">
+<li><p>Wie kann man das noch ein bisschen kürzer schreiben?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="schleifen">
+<h3>Schleifen<a class="headerlink" href="#schleifen" title="Permalink to this headline">¶</a></h3>
+<p>Bei einer <em><strong><code class="docutils literal notranslate"><span class="pre">for</span></code> - Schleife</strong></em> steht von vorneherein fest, wie oft sie durchlaufen wird.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">o</span> <span class="k">in</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="nb">π</span><span class="p">,</span> <span class="s">&quot;Hallo!&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Element &quot;</span> <span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Element 42
+Element π
+Element Hallo!
+Element 0.3333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das funktioniert auch mit Ranges:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+8
+27
+64
+125
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Julia kann man den vollständigen Unicode Zeichensatz verwenden. Für viele Dinge kann daher auch ein mathematisches Symbol verwendet werden. Zum Beispiel <span class="math notranslate nohighlight">\(\in\)</span> in der Schleife.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+8
+27
+64
+125
+</pre></div>
+</div>
+</div>
+</div>
+<p>Diese Schreibweise bringt sehr schön zum Ausdruck, dass i nacheinander den Wert aller Elemente einer Liste annimmt.</p>
+<p>Manchmal ist es wichtig zu wissen, an welcher Position ein Element der Liste steht. In diesem Fall verwendet man eine
+Zählvariable (in der Regel <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code> oder <code class="docutils literal notranslate"><span class="pre">k</span></code>) in Kombination mit dem <code class="docutils literal notranslate"><span class="pre">:</span></code> - Operator und häufig auch <code class="docutils literal notranslate"><span class="pre">length</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;i = &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&quot;, l[i] = &quot;</span><span class="p">,</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>i = 1, l[i] = π
+i = 2, l[i] = Auf Wiedersehen!
+i = 3, l[i] = 2021
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bei einer <code class="docutils literal notranslate"><span class="pre">while</span></code> - Schleife werden Anweisungen so lange ausgeführt wie eine Fortsetzungsbeding erfüllt ist. Sehr häufig werden <code class="docutils literal notranslate"><span class="pre">while</span></code> - Schleifen
+bei numerischen Näherungsverfahren verwendet, zum Beispiel bei der Berechnung einer Quadratwurzel mit dem Heron-Verfahren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Wir suchen die Wurzel aus dieser Zahl</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c"># Startwert für die Näherungslösung</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># Iteration</span>
+<span class="k">while</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-15</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">a</span> <span class="o">/</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Zwischenergebnis: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Ergebnis</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;Ergebnis: x = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&quot; mit x^2 = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zwischenergebnis: 1.5
+Zwischenergebnis: 1.4166666666666665
+Zwischenergebnis: 1.4142156862745097
+Zwischenergebnis: 1.4142135623746899
+Zwischenergebnis: 1.414213562373095
+Ergebnis: x = 1.414213562373095 mit x^2 = 1.9999999999999996
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dafür, welche der beiden Arten von Schleifen verwendet werden soll gibt es eine einfach Regel:</p>
+<ul class="simple">
+<li><p>Verwenden Sie eine <code class="docutils literal notranslate"><span class="pre">for</span></code> - Schleife, wenn vorab bekannt ist, wie oft die Schleife durchlaufen werden soll. Dies ist insbesondere
+bei der Verarbeitung von Listen der Fall.</p></li>
+<li><p>Andernfalls ist meist eine <code class="docutils literal notranslate"><span class="pre">while</span></code> - Schleife sinnvoll.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="funktionen">
+<h2>Funktionen<a class="headerlink" href="#funktionen" title="Permalink to this headline">¶</a></h2>
+<p>Eine Funktion fasst Anweisungen so zusammen, so dass Sie mit unterschiedlichen Eingabewerten ausgeführt werden können. Hier ein Beispiel, in dem
+der größte gemeinsame Teiler von zwei ganzen Zahlen bestimmt wird (<a class="reference external" href="https://de.wikipedia.org/wiki/Euklidischer_Algorithmus">Verfahren von Euklid</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">ggt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">h</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">a</span>
+<span class="k">end</span>
+
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;GGT von 33 und 88 ist &quot;</span><span class="p">,</span> <span class="n">ggt</span><span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="mi">88</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GGT von 33 und 88 ist 11
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eine Funktion beginnt also mit dem Schlüsselwort <code class="docutils literal notranslate"><span class="pre">function</span></code> gefolgt von dem Funktionsnamen, einer Parameterliste. Danach kommen
+die Anweisungen im Rumpf der Funktion, gefolgt von einem <code class="docutils literal notranslate"><span class="pre">end</span></code>. Das berechnete Ergebnis wird mit <code class="docutils literal notranslate"><span class="pre">return</span></code> zurück gegeben (<code class="docutils literal notranslate"><span class="pre">return</span></code> kann man ggf. auch weglassen).</p>
+<p>Kurze Funktionen kann man auch in der aus der Mathematik bekannten Schreibweise definieren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">^</span><span class="mi">2</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="funktionen-in-eigenen-dateien">
+<h3>Funktionen in eigenen Dateien<a class="headerlink" href="#funktionen-in-eigenen-dateien" title="Permalink to this headline">¶</a></h3>
+<p>Sollen Funktionen in mehreren Jupyter Notebooks verwendet werden, dann kann man sie in eine eigene Julia-Datei auslagern. Zum Beispiel enthält die (im selben
+Ordner wie die Jupyter Notebooks) liegende Datei
+<code class="docutils literal notranslate"><span class="pre">number_functions.jl</span></code> (Zip-Datei von Moodle herunterladen) Funktionen aus dem Bereich der Zahlentheorie. Um diese zu verwenden müssen sie zunächst importiert werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="p">(</span><span class="s">&quot;numberfunctions.jl&quot;</span><span class="p">)</span>
+
+<span class="c"># Funktionen verwenden</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;2 ist prim: &quot;</span><span class="p">,</span> <span class="n">isprime</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;11 ist prim: &quot;</span><span class="p">,</span> <span class="n">isprime</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;111 ist prim: &quot;</span><span class="p">,</span> <span class="n">isprime</span><span class="p">(</span><span class="mi">111</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Primfaktoren von 126: &quot;</span><span class="p">,</span> <span class="n">primefactors</span><span class="p">(</span><span class="mi">126</span><span class="p">))</span>
+
+<span class="c"># Test der Funktion isprime</span>
+<span class="n">passed</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="k">for</span> <span class="n">n</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">factors</span> <span class="o">=</span> <span class="n">primefactors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="k">in</span> <span class="n">factors</span>
+        <span class="n">product</span> <span class="o">*=</span> <span class="n">f</span>
+        <span class="k">if</span> <span class="o">!</span><span class="n">isprime</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">println</span><span class="p">(</span><span class="s">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s">&quot;: Faktor&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s">&quot; ist nicht prim&quot;</span><span class="p">)</span>
+            <span class="n">passed</span> <span class="o">=</span> <span class="nb">false</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="k">if</span> <span class="n">product</span> <span class="o">!=</span> <span class="n">n</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;n = &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s">&quot;: Nicht Produkt der Primfaktoren: &quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">passed</span> <span class="o">=</span> <span class="nb">false</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">passed</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Primfaktoren für die Zahlen von 1 bis 10000 sind OK&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 ist prim: true
+11 ist prim: true
+111 ist prim: false
+Primfaktoren von 126: Any[2, 3, 3, 7]
+Primfaktoren für die Zahlen von 1 bis 10000 sind OK
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mehrere-ruckgabewerte">
+<h3>Mehrere Rückgabewerte<a class="headerlink" href="#mehrere-ruckgabewerte" title="Permalink to this headline">¶</a></h3>
+<p>Funktionen können in Julia mehrere Werte zurückgeben. Das Funktioniert so:</p>
+<ul class="simple">
+<li><p>In der Return-Anweisung stehen mehrere Variablen durch Kommas getrennt</p></li>
+<li><p>Beim Aufruf der Funktion stehen links vom Gleichheitszeichen ebenfalls mehrere Variablen, getrennt durch Kommas get</p></li>
+<li><p>Die Anzahl der Variablen in der Return-Anweisung und beim Aufruf muss übereinstimmen, die Namen dürfen frei gewählt werden</p></li>
+</ul>
+<p>Hier nochmals das Beispiel mit der quadratischen Gleichung, diesmal in einer Funktion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">qroots</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span>
+<span class="k">end</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">qroots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;Lösungen: x1 = &quot;</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="s">&quot; und x2 = &quot;</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lösungen: x1 = -1.0 und x2 = 3.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="parametrisierte-funktionen">
+<h3>Parametrisierte Funktionen<a class="headerlink" href="#parametrisierte-funktionen" title="Permalink to this headline">¶</a></h3>
+<p>Aus der Mathematik kennen Sie Funktionenscharen der Form</p>
+<div class="math notranslate nohighlight">
+\[
+    f_n(x) = (1 - x/n)^2.
+\]</div>
+<p>Gemeint ist damit, dass wir für jede Zahl <span class="math notranslate nohighlight">\(n\)</span> eine Funktion <span class="math notranslate nohighlight">\(f_n\)</span> erhalten, zum Beispiel</p>
+<div class="math notranslate nohighlight">
+\[
+    f_1(x) = (1 - x) ^ 2 \quad \text{oder} \quad f_5(x) = (1 - x / 5)^2.
+\]</div>
+<p>In Julia lässt sich das durch eine Funktion realisieren, die eine Funktion zurückliefert. Für unser Beispiel
+sieht das so aus:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">makefn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">function</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">fn</span>
+<span class="k">end</span>
+
+<span class="n">f1</span> <span class="o">=</span> <span class="n">makefn</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">f5</span> <span class="o">=</span> <span class="n">makefn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f1(2) = &quot;</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f5(2) = &quot;</span><span class="p">,</span> <span class="n">f5</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f1(2) = 1.0
+f5(2) = 0.36
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weiterfuhrende-themen">
+<h2>Weiterführende Themen<a class="headerlink" href="#weiterfuhrende-themen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mehrfachvariablen">
+<h3>Mehrfachvariablen<a class="headerlink" href="#mehrfachvariablen" title="Permalink to this headline">¶</a></h3>
+<p>Es gibt Situationen, in denen verschiedene Werte zusammengehören, wie das zum Beispiel bei einem Quader mit Länge, Breite und Höhe der Fall ist. Hier bietet es sich an, die Werte in einem einzelnen Objekt zusammenzufassen, wie das mit dem <code class="docutils literal notranslate"><span class="pre">objdict</span></code>-Paket und der Klasse <code class="docutils literal notranslate"><span class="pre">ObjDict</span></code> möglich ist. Hier ein Beispiel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">Box</span> 
+    <span class="n">length</span> 
+    <span class="n">width</span>
+    <span class="n">height</span>
+<span class="k">end</span>
+
+<span class="c"># Define struct</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">Box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># Print</span>
+<span class="n">println</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c"># Compute volume and print</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">length</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">height</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Volume V = &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Box(3, 2, 5)
+Volume V = 30
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mit dem <code class="docutils literal notranslate"><span class="pre">Revise</span></code>-Paket kann der Code mehrfach ausgeführt werden, ohne dass Julia sich über die neue Deklaration von Box beschwert. Am besten, man erledigt das automatisch.</p>
+<p>Hier die Anleitung von <a class="reference external" href="https://quarto.org/docs/computations/julia.html#installation:">https://quarto.org/docs/computations/julia.html#installation:</a></p>
+<p>To configure Revise to launch automatically within IJulia, create a .julia/config/startup_ijulia.jl file with the contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
+  <span class="nd">@eval</span> <span class="n">using</span> <span class="n">Revise</span>
+<span class="n">catch</span> <span class="n">e</span>
+  <span class="nd">@warn</span> <span class="s2">&quot;Revise init&quot;</span> <span class="n">exception</span><span class="o">=</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">catch_backtrace</span><span class="p">())</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.8"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.8",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.8'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Vorbemerkungen</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Matthias Baitsch<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
