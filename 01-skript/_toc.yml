@@ -5,9 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: 01-julia
-
-
-#- file: 02-numpy
-#- file: 03-matplotlib
-#- file: 04-anfangswertprobleme
-
+- file: 02-vektoren-und-matrizen
+- file: 03-plotten
