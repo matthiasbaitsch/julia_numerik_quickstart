@@ -2,7 +2,7 @@ all: skript sourcecode
 
 skript:
 	jupyter-book build 01-skript
-	ghp-import -n -p -f 01-skript/_build/html
+	/opt/homebrew/Caskroom/miniforge/base/envs/py39/bin/ghp-import -n -p -f 01-skript/_build/html
 
 sourcecode:
 	mkdir -p dist/arbeiten-mit-julia-numerik
