@@ -1,0 +1,1166 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Rechnen mit Vektoren und Matrizen &#8212; Arbeiten mit Julia und Jupyter Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plots erstellen" href="03-plotten.html" />
+    <link rel="prev" title="Jupyter Notebooks und Julia" href="01-julia.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Arbeiten mit Julia und Jupyter Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Vorbemerkungen
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-julia.html">
+   Jupyter Notebooks und Julia
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Rechnen mit Vektoren und Matrizen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-plotten.html">
+   Plots erstellen
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/matthiasbaitsch/julia_numerik_quickstart/main?urlpath=tree/01-skript/02-vektoren-und-matrizen.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/matthiasbaitsch/julia_numerik_quickstart"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/02-vektoren-und-matrizen.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grundlagen">
+   Grundlagen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erzeugen">
+     Erzeugen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenschaften-von-arrays">
+     Eigenschaften von Arrays
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#auf-eintrage-zugreifen">
+     Auf Einträge zugreifen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#doppelpunkt-operator">
+       Doppelpunkt-Operator
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#index-arrays">
+       Index-Arrays
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rechnen-mit-matrizen-und-vektoren">
+   Rechnen mit Matrizen und Vektoren
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rechenoperation">
+     Rechenoperation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elementweise-operationen">
+     Elementweise Operationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lineare-algebra">
+     Lineare Algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Rechnen mit Vektoren und Matrizen</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grundlagen">
+   Grundlagen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erzeugen">
+     Erzeugen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenschaften-von-arrays">
+     Eigenschaften von Arrays
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#auf-eintrage-zugreifen">
+     Auf Einträge zugreifen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#doppelpunkt-operator">
+       Doppelpunkt-Operator
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#index-arrays">
+       Index-Arrays
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rechnen-mit-matrizen-und-vektoren">
+   Rechnen mit Matrizen und Vektoren
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rechenoperation">
+     Rechenoperation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elementweise-operationen">
+     Elementweise Operationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lineare-algebra">
+     Lineare Algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="rechnen-mit-vektoren-und-matrizen">
+<h1>Rechnen mit Vektoren und Matrizen<a class="headerlink" href="#rechnen-mit-vektoren-und-matrizen" title="Permalink to this headline">#</a></h1>
+<p>In numerischen Anwendungen sind Matrizen und Vektoren allgegenwärtig. In Julia sind die entsprechenden Datentypen und Operationen änlich wie in Matlab eingebaut. Allerdings müssen für bestimmte Aufgaben Pakete importiert werden.</p>
+<section id="grundlagen">
+<h2>Grundlagen<a class="headerlink" href="#grundlagen" title="Permalink to this headline">#</a></h2>
+<p>In Julia sind Vektoren und Matrizen Spezialfälle von <span class="math notranslate nohighlight">\(n\)</span>-dimensionalen Arrays für einen Vektor gilt <span class="math notranslate nohighlight">\(n = 1\)</span> und für eine Matrix <span class="math notranslate nohighlight">\(n = 2\)</span>.
+Uns wird das in der Regel ausreichen aber prinzipiell kann man auch mit fünfdimensionalen Arrays rechnen.</p>
+<section id="erzeugen">
+<h3>Erzeugen<a class="headerlink" href="#erzeugen" title="Permalink to this headline">#</a></h3>
+<p>Eine erste Möglichkeit Vektoren und Matrizen zu erzeugen besteht darin, die <strong>Einträge direkt anzugeben</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"></span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Damit haben wir den Zeilenvektor u erzeugt (eine <span class="math notranslate nohighlight">\(1 \times 3\)</span> Matrix)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×3 Matrix{Int64}:
+ 1  2  3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Demgegenüber entsprechen x und y den Vektoren, wie sie überlicherweise in der Mathematik verwendet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+ 5
+ 1
+ 9
+ 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+ 1
+ 2
+ 1
+ 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bei A und B handelt es sich um “normale” Matrizen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×4 Matrix{Int64}:
+ 1  2  3  4
+ 7  6  5  4
+ 6  4  6  4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufgabe</p>
+<ul class="simple">
+<li><p>Wie funktioniert die Eingabe?</p></li>
+</ul>
+<p>Weiterhin gibt es Funktionen, mit denen sich <strong>spezielle Matrizen und Vektoren</strong> anlegen lassen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;    Nullvektor: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;    Nullmatrix: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;    Einsmatrix: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Nullvektor: [0.0, 0.0, 0.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Nullmatrix: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0 0.0 0.0; 0.0 0.0 0.0]
+    Einsmatrix: [1.0 1.0; 1.0 1.0; 1.0 1.0; 1.0 1.0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Auf die Einheitsmatrix werden wir später eingehen.</p>
+<p>Praktisch ist die Funktion <code class="docutils literal notranslate"><span class="pre">range</span></code>, die ein Intervall von <span class="math notranslate nohighlight">\(a\)</span> bis <span class="math notranslate nohighlight">\(b\)</span> in <span class="math notranslate nohighlight">\(n - 1\)</span> gleichlange Abschnitte unterteilt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0:0.8:5.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es handelt sich wieder um ein spezielles Objekt für das die einzelnen Werte erst berechnet werden, wenn man sie braucht. Mit <code class="docutils literal notranslate"><span class="pre">collect</span></code> wird daraus wieder ein Vektor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">collect</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Float64}:
+ 1.0
+ 1.8
+ 2.6
+ 3.4
+ 4.2
+ 5.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eigenschaften-von-arrays">
+<h3>Eigenschaften von Arrays<a class="headerlink" href="#eigenschaften-von-arrays" title="Permalink to this headline">#</a></h3>
+<p>Die Eigenschaften eines Arrays lassen sich mit verschiedenen Funktionen abfragen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;length(x) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;ndims(A) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ndims</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;size(A) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;size(A, 1) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;size(A, 2) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length(x) = 6
+ndims(A) = 2
+size(A) = (3, 4)
+size(A, 1) = 3
+size(A, 2) = 4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="auf-eintrage-zugreifen">
+<h3>Auf Einträge zugreifen<a class="headerlink" href="#auf-eintrage-zugreifen" title="Permalink to this headline">#</a></h3>
+<p>Um auf die Einträge von Arrays zuzugreifen verwendet man eckige Klammern <code class="docutils literal notranslate"><span class="pre">[]</span></code>, die Indizierung
+beginnt bei 1. Bei Matrizen werden Zeilen- und Spaltenindex durch ein Komma getrennt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">999</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x[0] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = [1 999 3 4; 7 6 5 4; 6 4 6 4]
+x[0] = 1.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">end</span></code> wird vom Ende des Arrays gezählt. Dabei liefert <code class="docutils literal notranslate"><span class="pre">end</span></code> das letzte Element, <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">-</span> <span class="pre">1</span></code> das vorletzte, usw.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;A = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A[end, end-2] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="k">end</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = [1 999 3 4; 7 6 5 4; 6 4 6 4]
+A[end, end-2] = 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Häufig möchte man in einem Rechenschritt auf mehrere Einträge eines Arrays gleichzeitig zugreifen. Hierfür gibt es zwei Möglichkeiten:</p>
+<ul class="simple">
+<li><p>Den Doppelpunkt-Operator</p></li>
+<li><p>Die Indizierung mithilfe von Integer-Arrays</p></li>
+</ul>
+<section id="doppelpunkt-operator">
+<h4>Doppelpunkt-Operator<a class="headerlink" href="#doppelpunkt-operator" title="Permalink to this headline">#</a></h4>
+<p>Die Schreibweisen <code class="docutils literal notranslate"><span class="pre">start:stop</span></code> oder <code class="docutils literal notranslate"><span class="pre">start:inc:stop</span></code> zur Erzeugung einer Sequenz von Zahlen haben wir bereits kennengelernt. Eine solche Sequenz kann zur Indizierung verwendet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">99</span><span class="p">];</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y[2:4] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">5</span><span class="p">])</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y[3:end] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="k">end</span><span class="p">])</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y = [9, 3, 5, 1, 7, 4, 99]
+y[2:4] = [3, 5, 1, 7]
+y[3:end] = [5, 1, 7, 4, 99]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Offenbar kann man auch hier wieder <code class="docutils literal notranslate"><span class="pre">end</span></code> verwenden.</p>
+<p>Die Adressierung mit dem Doppelpunkt funktioniert auch bei Zuweisungen. Hier ein Beispiel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="mi">12</span><span class="p">]</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A =&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">display</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">11</span><span class="w"> </span><span class="mi">22</span><span class="p">;</span><span class="w"> </span><span class="mi">77</span><span class="w"> </span><span class="mi">88</span><span class="p">;</span><span class="w"> </span><span class="mi">99</span><span class="w"> </span><span class="mi">11</span><span class="p">]</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A =&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">display</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A =
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×4 Matrix{Int64}:
+ 1   2   3   4
+ 5   6   7   8
+ 9  10  11  12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A =
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×4 Matrix{Int64}:
+ 1   2  11  22
+ 5   6  77  88
+ 9  10  99  11
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wichtig dabei ist, dass die Dimensionen links und rechts vom Gleichheitszeichen zusammenpassen.</p>
+</section>
+<section id="index-arrays">
+<h4>Index-Arrays<a class="headerlink" href="#index-arrays" title="Permalink to this headline">#</a></h4>
+<p>Mithilfe von Index-Arrays lassen sich nicht-fortlaufende Bereiche adressieren</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="p">]</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="n">x</span><span class="p">[[</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">7</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">11</span><span class="w"> </span><span class="mi">33</span><span class="w"> </span><span class="mi">77</span><span class="p">]</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = [1 2 3 4 5 6 7]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = [11 2 33 4 5 6 77]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="rechnen-mit-matrizen-und-vektoren">
+<h2>Rechnen mit Matrizen und Vektoren<a class="headerlink" href="#rechnen-mit-matrizen-und-vektoren" title="Permalink to this headline">#</a></h2>
+<p>In Julia ist es möglich, Rechnungen mit Matrizen und Vektoren sehr kompakt und fast wie auf dem Papier aufzuschreiben.</p>
+<section id="rechenoperation">
+<h3>Rechenoperation<a class="headerlink" href="#rechenoperation" title="Permalink to this headline">#</a></h3>
+<p>Die mathematischen Operatoren <code class="docutils literal notranslate"><span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*</span></code> sind fast so definiert, wie wir das aus der Mathematik kennen, wobei man für das Matrix-Vektor-Produkt <span class="math notranslate nohighlight">\(\mathbf{A}\mathbf{x}\)</span> in Julia <code class="docutils literal notranslate"><span class="pre">A*x</span></code> schreibt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 5
+ 1
+ 6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+  9
+ 13
+  8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×3 Matrix{Int64}:
+ 1  2  3
+ 5  4  3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×2 Matrix{Int64}:
+ 1  1
+ 2  2
+ 3  3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 23
+ 27
+ 22
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eine Besonderheit in Julia ist, dass man das *-Zeichen zwischen einer Zahl und einer Variablen auch weglassen kann:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="n">y</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+   7
+ -21
+  14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">x</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Int64}:
+ 25
+ 47
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
+ 14  14
+ 22  22
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mit einem angehängten Apostroph <code class="docutils literal notranslate"><span class="pre">'</span></code> wird eine Matrix oder eines Vektors transponiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×2 adjoint(::Matrix{Int64}) with eltype Int64:
+ 1  5
+ 2  4
+ 3  3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×3 adjoint(::Vector{Int64}) with eltype Int64:
+ 5  1  6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dabei ist die Transponierte eines Vektors ein Zeilenvektor, lassen Sie sich von dem Wort <code class="docutils literal notranslate"><span class="pre">adjoint</span></code> nicht abschrecken, für uns hat es keine tiefergehende Bedeutung.</p>
+</section>
+<section id="elementweise-operationen">
+<h3>Elementweise Operationen<a class="headerlink" href="#elementweise-operationen" title="Permalink to this headline">#</a></h3>
+<p>Manchmal möchte man Operationen elementweise anwenden, zum Beispiel zu jedem Eintrag des Vektors eine Zahl addieren oder für alle Einträge den Sinus berechnen. Hierzu wird in Julia (das ist durchgängig so) an die Funktion oder den Operator ein Punkt angehängt (in Matlab gibt es die Konvention auch, dort ist sie aber nicht durchgängig umgesetzt).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 10
+  6
+ 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ -0.9589242746631385
+  0.8414709848078965
+ -0.27941549819892586
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Prinzip funktioniert auch wenn beide Operanden Arrays sind, zum Beispiel führt <code class="docutils literal notranslate"><span class="pre">.*</span></code> eine Elementweise Multiplikation aus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 45
+ 13
+ 48
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lineare-algebra">
+<h3>Lineare Algebra<a class="headerlink" href="#lineare-algebra" title="Permalink to this headline">#</a></h3>
+<p>Um Funktionen aus dem Gebiet der Linearen Algebra zu nutzen, wird zunächst das entsprechende Paket importiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Skalarprodukt von zwei Vektor berechnet <code class="docutils literal notranslate"><span class="pre">dot</span></code> oder der <code class="docutils literal notranslate"><span class="pre">⋅</span></code> (Eingabe mit <code class="docutils literal notranslate"><span class="pre">\cdot</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x ⋅ y = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">⋅</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;dot(x, y) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x ⋅ y = 106
+dot(x, y) = 106
+</pre></div>
+</div>
+</div>
+</div>
+<p>während es für das Kreuzprodukt kein eigenes Symbol gibt</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"></span>
+<span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cross</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;u = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;v = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;w = (u x v) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Natürlich gilt u ⋅ w = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">⋅</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; und v ⋅ w = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">⋅</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u = [3, 2, 1]
+v = [5, -1, 4]
+w = (u x v) = [9, -7, -13]
+Natürlich gilt u ⋅ w = 0 und v ⋅ w = 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lineare Gleichungssysteme lassen sich mit dem <code class="docutils literal notranslate"><span class="pre">\</span></code> - Operator lösen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="w">  </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Float64}:
+ -0.14285714285714288
+  2.857142857142857
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Verwendung des <code class="docutils literal notranslate"><span class="pre">\</span></code>-Operators kann man sich schlecht merken (findet der Autor). Vielleicht hilft folgende Erklärung. Auf Englisch heißt der Operator <em>left-division</em> Operator, was sich folgendermaßen verstehen lässt. Wir beginnen mit dem einfachen Fall der skalaren Gleichung <span class="math notranslate nohighlight">\(ax = b\)</span>, die man dadurch löst, dass man auf beiden Seiten durch <span class="math notranslate nohighlight">\(a\)</span> dividiert und damit <span class="math notranslate nohighlight">\(ax / a = b / a\)</span> also <span class="math notranslate nohighlight">\(x = b/a\)</span> erhält. Für die Vektorgleichung</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbf{A}\mathbf{x} = \mathbf{b}
+\]</div>
+<p>kann man aber nicht einfach durch <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> teilen. Man schreibt stattdessen</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbf{A} \backslash \mathbf{A} \mathbf{x} = \mathbf{A} \backslash \mathbf{b}
+\]</div>
+<p>und meint mit <span class="math notranslate nohighlight">\(\mathbf{A} \backslash\)</span> nichts anderes als die Multiplikation mit der Inversen <span class="math notranslate nohighlight">\(\mathbf{A}^1\)</span>. Also sozusagen dividieren von links, daher der Divisionsstrich in die andere Richtung. Mit dieser Überlegung ist</p>
+<div class="math notranslate nohighlight">
+\[
+    \underbrace{\mathbf{A} \backslash \mathbf{A}}_\mathbf{I} \mathbf{x} = \mathbf{A} \backslash \mathbf{b} \iff \mathbf{x} = \mathbf{A} \backslash \mathbf{b}
+\]</div>
+<p>und die Schreibweise damit durchaus sinnvoll. Mit <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> ist die Einheitsmatrix gemeint, im Zweifelsfall nochmal im Skript Mathematik I nachlesen. Und: Googeln Sie mal ‘<em>matrix left division</em>’ - die Schreibweise ist ziemlich weit verbreitet.</p>
+<p>Zum Schluss noch die obligatorische Kontrolle</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Float64}:
+ 0.0
+ 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Für die Einheitsmatrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \mathbf{I} 
+    =
+    \left[
+        \begin{array}{ccccc}
+            1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+            0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+            0 &amp; 0 &amp; 1 &amp; \cdots &amp; 0 \\
+            \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+            0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1
+        \end{array}
+    \right]
+\end{split}\]</div>
+<p>wird in Julia das Symbol <code class="docutils literal notranslate"><span class="pre">I</span></code> verwendet, für das man keine Größe angeben muss, es funktioniert, wie man das aus der Mathematik kennt. Zum Beispiel bei der Multiplikation mit einem Vektor</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">I</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 3
+ 2
+ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>oder der Addition zu einer anderen Matrix (auf der Diagonalen von <span class="math notranslate nohighlight">\(A\)</span> stehen <span class="math notranslate nohighlight">\(5\)</span> und <span class="math notranslate nohighlight">\(1\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">I</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
+ 6  2
+ 6  2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Exkurs: Interessanterweise belegt <code class="docutils literal notranslate"><span class="pre">I</span></code> dabei genau ein Byte Speicherplatz, während Vektoren einen gewissen Overhead und für jeden double-Werte 8 Bytes benötigen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Einheitsmatrix: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">summarysize</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Speicher für Vektor mit   3 Elementen: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">summarysize</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">]))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Speicher für Vektor mit   4 Elementen: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">summarysize</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">]))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Einheitsmatrix: 1
+Speicher für Vektor mit   3 Elementen: 64
+Speicher für Vektor mit   4 Elementen: 72
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Nullen werden also gar nicht gespeichert. Wie funktioniert das? In Julia können Funktionen und Operatoren unterschiedlich für verschiedene Datentypen implementiert werden. Es gibt also eine spezielle Version von <code class="docutils literal notranslate"><span class="pre">*</span></code> für die Einheitsmatrix und einen Vektor, der einfach den Vektor zurückliefert. Das ist eine sehr schöne Anwendung eines der fundamentalen Konzepte von Julia, dem <em>Multiple Dispatch</em>. Ein Vortrag zum Thema gibt es hier <a class="reference external" href="https://youtu.be/kc9HwsxE1OY">https://youtu.be/kc9HwsxE1OY</a>, Stefan Karpinski ist einer der Autoren von Julia, dementsprechend ist er ziemlich begeistert von der Sache. Trotzdem intressant.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.8"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.8",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.8'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-julia.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Jupyter Notebooks und Julia</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03-plotten.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plots erstellen</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthias Baitsch<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
