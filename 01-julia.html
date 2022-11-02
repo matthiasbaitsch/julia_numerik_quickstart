@@ -368,6 +368,11 @@ title="Print to PDF"
      Parametrisierte Funktionen
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exkurs-optionale-benannte-und-parameter">
+     Exkurs: Optionale, benannte und … Parameter
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -376,8 +381,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mehrfachvariablen">
-     Mehrfachvariablen
+    <a class="reference internal nav-link" href="#strukturen">
+     Strukturen
     </a>
    </li>
   </ul>
@@ -469,6 +474,11 @@ title="Print to PDF"
      Parametrisierte Funktionen
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exkurs-optionale-benannte-und-parameter">
+     Exkurs: Optionale, benannte und … Parameter
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -477,8 +487,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mehrfachvariablen">
-     Mehrfachvariablen
+    <a class="reference internal nav-link" href="#strukturen">
+     Strukturen
     </a>
    </li>
   </ul>
@@ -508,6 +518,8 @@ können damit interaktive Dokumente erstellt werden, die sich in verschiedene Fo
 <li><p>Programmcode (bei uns Julia)</p></li>
 </ul>
 <p>enthalten können. Textzellen lassen sich mit einem Doppelklick bearbeiten, mit <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> schließen Sie die Bearbeitung ab.</p>
+<p>Bilder lassen sich ebenfalls einfügen:</p>
+<p><img alt="Julia Icon" src="_images/julia.png" /></p>
 <section id="variablen-operatoren-und-mathematische-funktionen">
 <h2>Variablen, Operatoren und mathematische Funktionen<a class="headerlink" href="#variablen-operatoren-und-mathematische-funktionen" title="Permalink to this headline">#</a></h2>
 <p>Variablen enthalten Werte, im Beispiel unten eine Zeichenkette, eine Fließkommazahl und eine ganze Zahl. Die Ausgabe erfolgt mit der <code class="docutils literal notranslate"><span class="pre">print</span></code> - Funktion.</p>
@@ -932,6 +944,38 @@ i = 3, l[i] = 2021
 </div>
 </div>
 </div>
+<p>Geschachtelte Schleifen wie</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">5</span><span class="o">:</span><span class="mi">6</span><span class="w"></span>
+<span class="w">        </span><span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-5 1-6 2-5 2-6 3-5 3-6 
+</pre></div>
+</div>
+</div>
+</div>
+<p>lassen sich in Julia auch kompakt schreiben als</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">5</span><span class="o">:</span><span class="mi">6</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-5 1-6 2-5 2-6 3-5 3-6 
+</pre></div>
+</div>
+</div>
+</div>
 <p>Bei einer <code class="docutils literal notranslate"><span class="pre">while</span></code> - Schleife werden Anweisungen so lange ausgeführt wie eine Fortsetzungsbeding erfüllt ist. Sehr häufig werden <code class="docutils literal notranslate"><span class="pre">while</span></code> - Schleifen
 bei numerischen Näherungsverfahren verwendet, zum Beispiel bei der Berechnung einer Quadratwurzel mit dem Heron-Verfahren.</p>
 <div class="cell docutils container">
@@ -1155,12 +1199,71 @@ f5(2) = 0.36
 </div>
 </div>
 </section>
+<section id="exkurs-optionale-benannte-und-parameter">
+<h3>Exkurs: Optionale, benannte und … Parameter<a class="headerlink" href="#exkurs-optionale-benannte-und-parameter" title="Permalink to this headline">#</a></h3>
+<p>Die letzten Parameter einer Funktion können voreingestellte Werte haben</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(1, 10, 100) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(100, 9) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(108) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">108</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(1, 10, 100) = 111
+f(100, 9) = 111
+f(108) = 111
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Werte werden eingesetzt, wenn man die Parameter beim Aufrufen weglässt.</p>
+<p>In dem Funktionsaufruf <code class="docutils literal notranslate"><span class="pre">f(1,</span> <span class="pre">10,</span> <span class="pre">100)</span></code> erhält der Parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> den Wert <code class="docutils literal notranslate"><span class="pre">1</span></code>, da in der Parameterliste an erster Stelle stehen. Man spricht hier von Positionsparametern. Eine weitere Möglichkeit sind benannte Parameter. Hier ein Beispiel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(100, z = 3, y = 8) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(100, z = 3, y = 8) = 111
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das funktioniert so:</p>
+<ul class="simple">
+<li><p>In der Funktionsdeklaration wird die Liste der Positionsparameter durch ein Semikolon von der Liste der benannten Parameter abgetrennt</p></li>
+<li><p>Beim Funktionsaufruf ist für die benannten Parameter der Name anzugeben. Die Reihenfolge spielt dann keine Rolle und das Semikolon braucht man auch nicht</p></li>
+</ul>
+<p>Auch bei benannten Parameterlisten können Parameter wieder voreingestelle Werte besitzen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(90, x = 3) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f(89, 4, z = 7, x = 2) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f(90, x = 3) = 111
+f(89, 4, z = 7, x = 2) = 111
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="weiterfuhrende-themen">
 <h2>Weiterführende Themen<a class="headerlink" href="#weiterfuhrende-themen" title="Permalink to this headline">#</a></h2>
-<section id="mehrfachvariablen">
-<h3>Mehrfachvariablen<a class="headerlink" href="#mehrfachvariablen" title="Permalink to this headline">#</a></h3>
-<p>Es gibt Situationen, in denen verschiedene Werte zusammengehören, wie das zum Beispiel bei einem Quader mit Länge, Breite und Höhe der Fall ist. Hier bietet es sich an, die Werte in einem einzelnen Objekt zusammenzufassen, wie das mit dem <code class="docutils literal notranslate"><span class="pre">objdict</span></code>-Paket und der Klasse <code class="docutils literal notranslate"><span class="pre">ObjDict</span></code> möglich ist. Hier ein Beispiel.</p>
+<section id="strukturen">
+<h3>Strukturen<a class="headerlink" href="#strukturen" title="Permalink to this headline">#</a></h3>
+<p>Es gibt Situationen, in denen verschiedene Werte zusammengehören, wie das zum Beispiel bei einem Quader mit Länge, Breite und Höhe der Fall ist. Hier bietet sich die Verwendung einer Struktur an.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define struct</span><span class="w"></span>
@@ -1178,13 +1281,28 @@ f5(2) = 0.36
 
 <span class="c"># Compute volume and print</span><span class="w"></span>
 <span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">height</span><span class="w"></span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Volume V = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Volumen V = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Box(3, 2, 5)
-Volume V = 30
+Volumen V = 30
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eine Struktur kann als Parameter an eine Funktion übergeben werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">volume</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">height</span><span class="w"></span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Volumen V = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Volumen V = 30
 </pre></div>
 </div>
 </div>
