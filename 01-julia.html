@@ -369,8 +369,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exkurs-optionale-benannte-und-parameter">
-     Exkurs: Optionale, benannte und … Parameter
+    <a class="reference internal nav-link" href="#exkurs-optionale-und-benannte-parameter">
+     Exkurs: Optionale und benannte Parameter
     </a>
    </li>
   </ul>
@@ -381,8 +381,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strukturen">
-     Strukturen
+    <a class="reference internal nav-link" href="#benannte-tupel-and-structs">
+     Benannte Tupel and Structs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#das-revise-paket">
+     Das Revise-Paket
     </a>
    </li>
   </ul>
@@ -475,8 +480,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exkurs-optionale-benannte-und-parameter">
-     Exkurs: Optionale, benannte und … Parameter
+    <a class="reference internal nav-link" href="#exkurs-optionale-und-benannte-parameter">
+     Exkurs: Optionale und benannte Parameter
     </a>
    </li>
   </ul>
@@ -487,8 +492,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strukturen">
-     Strukturen
+    <a class="reference internal nav-link" href="#benannte-tupel-and-structs">
+     Benannte Tupel and Structs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#das-revise-paket">
+     Das Revise-Paket
     </a>
    </li>
   </ul>
@@ -518,8 +528,9 @@ können damit interaktive Dokumente erstellt werden, die sich in verschiedene Fo
 <li><p>Programmcode (bei uns Julia)</p></li>
 </ul>
 <p>enthalten können. Textzellen lassen sich mit einem Doppelklick bearbeiten, mit <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code> schließen Sie die Bearbeitung ab.</p>
-<p>Bilder lassen sich ebenfalls einfügen:</p>
+<p>Bilder lassen sich mit <code class="docutils literal notranslate"><span class="pre">![Alternativer</span> <span class="pre">Text](Pfad)</span></code> ebenfalls einfügen. Zum Beispiel zeigt <code class="docutils literal notranslate"><span class="pre">![Julia</span> <span class="pre">Icon](pics/julia.png)</span></code> das Julia Logo</p>
 <p><img alt="Julia Icon" src="_images/julia.png" /></p>
+<p>das im Unterverzeichnis <code class="docutils literal notranslate"><span class="pre">pics</span></code> abgelegt ist.</p>
 <section id="variablen-operatoren-und-mathematische-funktionen">
 <h2>Variablen, Operatoren und mathematische Funktionen<a class="headerlink" href="#variablen-operatoren-und-mathematische-funktionen" title="Permalink to this headline">#</a></h2>
 <p>Variablen enthalten Werte, im Beispiel unten eine Zeichenkette, eine Fließkommazahl und eine ganze Zahl. Die Ausgabe erfolgt mit der <code class="docutils literal notranslate"><span class="pre">print</span></code> - Funktion.</p>
@@ -1136,7 +1147,7 @@ Primfaktoren für die Zahlen von 1 bis 10000 sind OK
 <p>Funktionen können in Julia mehrere Werte zurückgeben. Das Funktioniert so:</p>
 <ul class="simple">
 <li><p>In der Return-Anweisung stehen mehrere Variablen durch Kommas getrennt</p></li>
-<li><p>Beim Aufruf der Funktion stehen links vom Gleichheitszeichen ebenfalls mehrere Variablen, getrennt durch Kommas get</p></li>
+<li><p>Beim Aufruf der Funktion stehen links vom Gleichheitszeichen ebenfalls mehrere Variablen, getrennt durch Kommas</p></li>
 <li><p>Die Anzahl der Variablen in der Return-Anweisung und beim Aufruf muss übereinstimmen, die Namen dürfen frei gewählt werden</p></li>
 </ul>
 <p>Hier nochmals das Beispiel mit der quadratischen Gleichung, diesmal in einer Funktion.</p>
@@ -1199,8 +1210,8 @@ f5(2) = 0.36
 </div>
 </div>
 </section>
-<section id="exkurs-optionale-benannte-und-parameter">
-<h3>Exkurs: Optionale, benannte und … Parameter<a class="headerlink" href="#exkurs-optionale-benannte-und-parameter" title="Permalink to this headline">#</a></h3>
+<section id="exkurs-optionale-und-benannte-parameter">
+<h3>Exkurs: Optionale und benannte Parameter<a class="headerlink" href="#exkurs-optionale-und-benannte-parameter" title="Permalink to this headline">#</a></h3>
 <p>Die letzten Parameter einer Funktion können voreingestellte Werte haben</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1261,38 +1272,31 @@ f(89, 4, z = 7, x = 2) = 111
 </section>
 <section id="weiterfuhrende-themen">
 <h2>Weiterführende Themen<a class="headerlink" href="#weiterfuhrende-themen" title="Permalink to this headline">#</a></h2>
-<section id="strukturen">
-<h3>Strukturen<a class="headerlink" href="#strukturen" title="Permalink to this headline">#</a></h3>
-<p>Es gibt Situationen, in denen verschiedene Werte zusammengehören, wie das zum Beispiel bei einem Quader mit Länge, Breite und Höhe der Fall ist. Hier bietet sich die Verwendung einer Struktur an.</p>
+<section id="benannte-tupel-and-structs">
+<h3>Benannte Tupel and Structs<a class="headerlink" href="#benannte-tupel-and-structs" title="Permalink to this headline">#</a></h3>
+<p>Es gibt Situationen, in denen verschiedene Werte zusammengehören, wie das zum Beispiel bei einem Quader mit Länge, Breite und Höhe der Fall ist.</p>
+<p>Ein benanntes Tupel ist eine Sammlung von benannten Werten, die beim Erzeugen belegt werden. Auf die Werte kann man anschließend mit dem Namen zugreifen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define struct</span><span class="w"></span>
-<span class="k">struct</span> <span class="kt">Box</span><span class="w"> </span>
-<span class="w">    </span><span class="n">length</span><span class="w"> </span>
-<span class="w">    </span><span class="n">width</span><span class="w"></span>
-<span class="w">    </span><span class="n">height</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="c"># Create Box with length=3, width=2 and height=5</span><span class="w"></span>
-<span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
-
-<span class="c"># Print</span><span class="w"></span>
-<span class="n">println</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"></span>
-
-<span class="c"># Compute volume and print</span><span class="w"></span>
-<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">height</span><span class="w"></span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Volumen V = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;q = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;V = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">.</span><span class="n">height</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Box(3, 2, 5)
-Volumen V = 30
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q = (length = 3, width = 5, height = 2)
+V = 30
 </pre></div>
 </div>
 </div>
 </div>
-<p>Eine Struktur kann als Parameter an eine Funktion übergeben werden:</p>
+<p>Eine benanntes Tupel kann als Parameter an eine Funktion übergeben werden:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">volume</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">height</span><span class="w"></span>
@@ -1307,6 +1311,43 @@ Volumen V = 30
 </div>
 </div>
 </div>
+<p>Kommen in einem Programm gleichartige Objekte häufig vor, dann ist es einfacher, diese in einem Struct abzubilden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define struct</span><span class="w"></span>
+<span class="k">struct</span> <span class="kt">Box</span><span class="w"> </span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span>
+<span class="w">    </span><span class="n">width</span><span class="w"></span>
+<span class="w">    </span><span class="n">height</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c"># Create two boxes</span><span class="w"></span>
+<span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Print</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Compute volume and print (function works for named tuples and structs as well)</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;volume(q1) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span><span class="p">(</span><span class="n">q1</span><span class="p">))</span><span class="w"></span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;volume(q2) = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span><span class="p">(</span><span class="n">q2</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Box(3, 2, 5)
+Box(4, 7, 2)
+volume(q1) = 30
+volume(q2) = 56
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hinweis: Structs sind ein fundamentales Konzept für die Erstellung komplexer Programme in Julia. Wir kratzen hier nur ein bisschen an der Oberfläche.</p>
+</section>
+<section id="das-revise-paket">
+<h3>Das Revise-Paket<a class="headerlink" href="#das-revise-paket" title="Permalink to this headline">#</a></h3>
 <p>Mit dem <code class="docutils literal notranslate"><span class="pre">Revise</span></code>-Paket kann der Code mehrfach ausgeführt werden, ohne dass Julia sich über die neue Deklaration von Box beschwert. Am besten, man erledigt das automatisch.</p>
 <p>Hier die Anleitung von <a class="reference external" href="https://quarto.org/docs/computations/julia.html#installation:">https://quarto.org/docs/computations/julia.html#installation:</a></p>
 <p>To configure Revise to launch automatically within IJulia, create a .julia/config/startup_ijulia.jl file with the contents:</p>
