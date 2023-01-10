@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Numerische Lösung von Anfangswertproblemen &#8212; Arbeiten mit Julia und Jupyter Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Plots erstellen" href="03-plotten.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Arbeiten mit Julia und Jupyter Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Vorbemerkungen
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-julia.html">
+   Jupyter Notebooks und Julia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-vektoren-und-matrizen.html">
+   Rechnen mit Vektoren und Matrizen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-plotten.html">
+   Plots erstellen
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Numerische Lösung von Anfangswertproblemen
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/matthiasbaitsch/julia_numerik_quickstart/main?urlpath=tree/01-skript/04-anfangswertprobleme.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/matthiasbaitsch/julia_numerik_quickstart"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/04-anfangswertprobleme.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung">
+   Einführung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerische-losung-bei-einer-unbekannten-funktion">
+   Numerische Lösung bei einer unbekannten Funktion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schreibweise-funktion-der-differentialgleichung">
+     Schreibweise: Funktion der Differentialgleichung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#euler-verfahren">
+     Euler-Verfahren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naherungsverfahren-in-differentialequations">
+     Näherungsverfahren in DifferentialEquations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#systeme-von-differentialgleichungen">
+   Systeme von Differentialgleichungen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steife-differentialgleichungen">
+   Steife Differentialgleichungen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentialgleichungen-mit-massenmatrix">
+   Differentialgleichungen mit Massenmatrix
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Numerische Lösung von Anfangswertproblemen</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#einfuhrung">
+   Einführung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerische-losung-bei-einer-unbekannten-funktion">
+   Numerische Lösung bei einer unbekannten Funktion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schreibweise-funktion-der-differentialgleichung">
+     Schreibweise: Funktion der Differentialgleichung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#euler-verfahren">
+     Euler-Verfahren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naherungsverfahren-in-differentialequations">
+     Näherungsverfahren in DifferentialEquations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#systeme-von-differentialgleichungen">
+   Systeme von Differentialgleichungen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steife-differentialgleichungen">
+   Steife Differentialgleichungen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentialgleichungen-mit-massenmatrix">
+   Differentialgleichungen mit Massenmatrix
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="numerische-losung-von-anfangswertproblemen">
+<h1>Numerische Lösung von Anfangswertproblemen<a class="headerlink" href="#numerische-losung-von-anfangswertproblemen" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="#einfuhrung" title="Permalink to this headline">#</a></h2>
+<p>Beispiel: Gesucht ist eine Funktion <span class="math notranslate nohighlight">\(y: \mathbb{R} \to \mathbb{R}\)</span> für die gilt:</p>
+<div class="math notranslate nohighlight">
+\[y'(x) = 2 x \cdot y(x), \quad y(0) = 1.\]</div>
+<p>Für jedes <span class="math notranslate nohighlight">\(x\)</span> soll also die Ableitung <span class="math notranslate nohighlight">\(y'(x)\)</span>  gleich <span class="math notranslate nohighlight">\(2\)</span> mal dem Funktionswert <span class="math notranslate nohighlight">\(y(x)\)</span> sein. Gleichzeitig ist vorgegeben, dass <span class="math notranslate nohighlight">\(y\)</span> an der Stelle <span class="math notranslate nohighlight">\(x=0\)</span> den Wert <span class="math notranslate nohighlight">\(y(0) = 1\)</span>  annimmt. Wie sich durch Einsetzen leicht überprüfen lässt, löst die Funktion</p>
+<div class="math notranslate nohighlight">
+\[y(x) = \exp(x^2)\]</div>
+<p>diese Aufgabe.</p>
+<p>Es sind also</p>
+<ul class="simple">
+<li><p>eine Differentialgleichung (ordinary differential equation), die eine Beziehung zwischen <span class="math notranslate nohighlight">\(y'(x)\)</span> und <span class="math notranslate nohighlight">\(x\)</span> sowie <span class="math notranslate nohighlight">\(y(x)\)</span> herstellt sowie</p></li>
+<li><p>Anfangswerte <span class="math notranslate nohighlight">\(x_0\)</span> und <span class="math notranslate nohighlight">\(y_0\)</span> für die <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span> gelten soll</p></li>
+</ul>
+<p>gegeben. Gesucht ist eine Funktion, die beide Bedingungen erfüllt. Eine solche Aufgabenstellung heißt Anfangswertproblem (initial value problem).</p>
+<p>Dass es im Beispiel gelingt, eine exakte Lösung zu finden ist nicht die Regel. Man wird daher auf numerische Lösungsverfahren zurückgreifen müssen.</p>
+<p>Anmerkungen:</p>
+<ul class="simple">
+<li><p>Die Lösung solcher Anfangswertprobleme ist von großer praktischer Bedeutung (Wettervorhersage, Berechnung von Schwingungen, Ausbreitung von Infektionskrankheiten und vieles mehr)</p></li>
+<li><p>Es existieren eine Vielzahl verschiedener Lösungsverfahren mit einer umfangreichen mathematischen Theorie (zum Beispiel das <a class="reference external" href="https://www.degruyter.com/document/doi/10.1515/9783110316360/html?lang=de">Standardwerk</a> von Deuflhard und Bornemann)</p></li>
+<li><p>Wir kratzen hier nur ein bisschen an der Oberfläche</p></li>
+</ul>
+</section>
+<section id="numerische-losung-bei-einer-unbekannten-funktion">
+<h2>Numerische Lösung bei einer unbekannten Funktion<a class="headerlink" href="#numerische-losung-bei-einer-unbekannten-funktion" title="Permalink to this headline">#</a></h2>
+<section id="schreibweise-funktion-der-differentialgleichung">
+<h3>Schreibweise: Funktion der Differentialgleichung<a class="headerlink" href="#schreibweise-funktion-der-differentialgleichung" title="Permalink to this headline">#</a></h3>
+<p>Wir beginnen damit, eine sehr hilfreiche Schreibweise einzuführen. Hierzu machen wir uns klar, dass die Differentialgleichung im Beispiel oben auch als Vorschrift gelesen werden kann, mit deren Hilfe wir die Ableitung <span class="math notranslate nohighlight">\(y'(x)\)</span> berechnen können, wenn <span class="math notranslate nohighlight">\(x\)</span> und <span class="math notranslate nohighlight">\(y(x)\)</span> gegeben sind. Ohne die Lösungsfunktion zu kennen, können wir mithilfe der Anfangswerte <span class="math notranslate nohighlight">\(x_0 = 0\)</span> und <span class="math notranslate nohighlight">\(y_0 = 1\)</span> sofort angeben, dass</p>
+<div class="math notranslate nohighlight">
+\[
+y'(0) = 2 \cdot 0 \cdot 1 = 0
+\]</div>
+<p>gelten muss. Die Ableitung <span class="math notranslate nohighlight">\(y'(0)\)</span> hängt also nur von den zwei Zahlen <span class="math notranslate nohighlight">\(x=0\)</span> und <span class="math notranslate nohighlight">\(y(0) = 1\)</span> ab. Den Zusammenhang können wir mithilfe der Funktion <span class="math notranslate nohighlight">\(F: \mathbb{R}^2 \to \mathbb{R}\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[
+F(x, y) = 2xy
+\]</div>
+<p>zum Ausdruck bringen. Unsere Differentialgleichung können wir damit in der Form</p>
+<div class="math notranslate nohighlight">
+\[
+y'(x) = F(x, y(x)) = 2x \cdot y(x)
+\]</div>
+<p>aufschreiben.</p>
+<p>Wir sehen: Eine Differentialgleichung lässt sich in einer Funktion <span class="math notranslate nohighlight">\(F\)</span> ausdrücken, die zwei Zahlen <span class="math notranslate nohighlight">\(x, y\)</span> eine neue Zahl <span class="math notranslate nohighlight">\(F(x, y)\)</span> zuordnet. Wir nennen <span class="math notranslate nohighlight">\(F\)</span> die Funktion der Differentialgleichung.</p>
+<p>Wir lösen das Anfangswertproblem nun numerisch mit einem sehr rudimentären Verfahren und mit einer Python-Funktion.</p>
+<p>Hierzu benötigen wir die Funktion der DGL</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>und die exakte Lösung zum Vergleich</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">LinRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"></span>
+<span class="n">yr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="o">.</span><span class="p">(</span><span class="n">xr</span><span class="o">.^</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="euler-verfahren">
+<h3>Euler-Verfahren<a class="headerlink" href="#euler-verfahren" title="Permalink to this headline">#</a></h3>
+<p>Ein sehr einfaches numerisches Verfahren zur Lösung von Anfangswertproblemen ist das eulersche Polygonzugverfahren (auch: Euler-Vorwärts), das ausgehend von den Anfangswerten <span class="math notranslate nohighlight">\(x_0, y_0\)</span> und einer Schrittweite <span class="math notranslate nohighlight">\(h\)</span> die Näherungsösung nach dem Schema</p>
+<div class="math notranslate nohighlight">
+\[
+x_{n+1} = x_n + h, \quad y_{n+1} = y_n + h \cdot F(x_n, y_n)
+\]</div>
+<p>berechnet. Hier die Umsetzung in Julia:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ceil</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.+</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y0</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>euler (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Damit bestimmen wir die Näherungslösungen für zwei verschiedene Schrittweiten</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">xe1</span><span class="p">,</span><span class="w"> </span><span class="n">ye1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span><span class="w"></span>
+<span class="n">xe2</span><span class="p">,</span><span class="w"> </span><span class="n">ye2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.02</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span><span class="w"> </span><span class="n">yr</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Exakt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="o">=</span><span class="ss">:topleft</span><span class="p">)</span><span class="w"></span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">xe1</span><span class="p">,</span><span class="w"> </span><span class="n">ye1</span><span class="p">,</span><span class="w"> </span><span class="n">markershape</span><span class="o">=</span><span class="ss">:circle</span><span class="p">,</span><span class="w"> </span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Euler h = 0.2&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">xe2</span><span class="p">,</span><span class="w"> </span><span class="n">ye2</span><span class="p">,</span><span class="w"> </span><span class="n">markershape</span><span class="o">=</span><span class="ss">:circle</span><span class="p">,</span><span class="w"> </span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Euler h = 0.02&quot;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-anfangswertprobleme_11_0.svg" src="_images/04-anfangswertprobleme_11_0.svg" /></div>
+</div>
+</section>
+<section id="naherungsverfahren-in-differentialequations">
+<h3>Näherungsverfahren in DifferentialEquations<a class="headerlink" href="#naherungsverfahren-in-differentialequations" title="Permalink to this headline">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">DifferentialEquations</span></code> (oben importiert) gibt es eine einheitliche Schnittstelle zu verschiedenen numerischen Verfahren darstellt. Standardmäßig wird ein adaptives Verfahren mit automatischer Schrittweitensteuerung verwendet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span><span class="w"> </span><span class="n">yr</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Exakt&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Näherung&quot;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-anfangswertprobleme_13_0.svg" src="_images/04-anfangswertprobleme_13_0.svg" /></div>
+</div>
+</section>
+</section>
+<section id="systeme-von-differentialgleichungen">
+<h2>Systeme von Differentialgleichungen<a class="headerlink" href="#systeme-von-differentialgleichungen" title="Permalink to this headline">#</a></h2>
+<p>In der Praxis gibt es häufig mit Aufgaben, die auf Systeme von Differentialgleichungen führen. Ein Beispiel ist das System</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  \dot y_1(t) &amp;=&amp; a \cdot (y_2(t) - y_1(t))\\
+  \dot y_2(t) &amp;=&amp; y_1(t) \cdot (b - y_3(t)) - y_2(t)\\
+  \dot y_3(t) &amp;=&amp; y_1(t) \cdot y_2(t) - c \cdot y_3(t)
+\end{array}
+\end{split}\]</div>
+<p>in dem die Ableitungen von drei Funktionen jeweils von den Funktionswerten aller Funktionen abhängen. Dabei sind <span class="math notranslate nohighlight">\(a, b, c\)</span> vorgegebene Zahlenwerte. In diesem Fall ordnet die Abbildung <span class="math notranslate nohighlight">\(\mathbf{F}: \mathbb{R} \times \mathbb{R}^3 \to \mathbb{R}^3\)</span> der Zeit <span class="math notranslate nohighlight">\(t\)</span> und den drei Funktionswerten <span class="math notranslate nohighlight">\(y_1(t), y_2(t), y_3(t)\)</span> die zeitlichen Ableitungen <span class="math notranslate nohighlight">\(\dot y_1(t), \dot y_2(t), \dot y_3(t)\)</span> zu. Wir fassen das in einem Vektor zusammen und erhalten die Schreibweise</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{F}(t, \mathbf{y}) =
+\left(
+\begin{array}{c}
+a \cdot (y_2 - y_1) \\
+y_1 \cdot (b - y_3) - y_2 \\
+y_1 \cdot y_2 - c \cdot y_3
+\end{array}
+\right),
+\end{split}\]</div>
+<p>bei der wir uns nicht davon irritieren lassen, dass <span class="math notranslate nohighlight">\(t\)</span> gar nicht rechts vom Gleichheitszeichen auftaucht. In diesem Beispiel ist der Funktionswert unabhängig von <span class="math notranslate nohighlight">\(t\)</span> (man sagt, das System ist autonom), im Allgemeinen ist das jedoch nicht der Fall.
+Damit können wir das Anfangswertproblem für gegebene Werte <span class="math notranslate nohighlight">\(a, b, c\)</span> und eine Anfangsbedingung <span class="math notranslate nohighlight">\(t_0\)</span> und <span class="math notranslate nohighlight">\(\mathbf{y}_0\)</span> näherungsweise lösen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Funktion der DGL</span><span class="w"></span>
+<span class="n">F</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="w"></span>
+<span class="w">        </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+
+<span class="c"># Anfangswert</span><span class="w"></span>
+<span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span><span class="w"></span>
+
+<span class="c"># Problem</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span><span class="w"></span>
+
+<span class="c"># Näherungslösung</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+
+<span class="c"># Plot</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">idxs</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-anfangswertprobleme_15_0.svg" src="_images/04-anfangswertprobleme_15_0.svg" /></div>
+</div>
+<p>Anmerkung: Dieses Beispiel ist die so genannte Lorenzgleichung, die eng mit dem Schlagwort des <a class="reference external" href="https://de.wikipedia.org/wiki/Schmetterlingseffekt">Schmetterlingseffekts</a> verbunden ist.</p>
+</section>
+<section id="steife-differentialgleichungen">
+<h2>Steife Differentialgleichungen<a class="headerlink" href="#steife-differentialgleichungen" title="Permalink to this headline">#</a></h2>
+<p>Als Beispiel betrachten wir den Van der Pol Oszillator (ein Problem aus der Elektrotechnik) der auf das Anfangswertproblem</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{rcl}
+    \dot y_1(t) &amp; = &amp; y_2(t) \\[1ex]
+    \dot y_2(t) &amp; = &amp; 1000 \cdot (1-y_1(t)^2) \cdot y_2(t) - y_1(t)
+  \end{array}
+\quad \text{und} \quad
+\mathbf{y}(0) = 
+\left(\begin{array}{c}2\\0\end{array}\right)
+\end{split}\]</div>
+<p>führt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Funktion der DGL</span><span class="w"></span>
+<span class="n">F</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+
+<span class="c"># Anfangswert</span><span class="w"></span>
+<span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
+
+<span class="c"># Problem</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3000</span><span class="p">])</span><span class="w"></span>
+
+<span class="c"># Näherungslösung</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+
+<span class="c"># Ausgabe</span><span class="w"></span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;N = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">markershape</span><span class="o">=</span><span class="ss">:circle</span><span class="p">,</span><span class="w"> </span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N = 582
+</pre></div>
+</div>
+<img alt="_images/04-anfangswertprobleme_18_1.svg" src="_images/04-anfangswertprobleme_18_1.svg" /></div>
+</div>
+<p>Das Standardverfahren funktioniert hier sehr gut, die Funktion <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> aus dem Python scipy Paket berechnet für diese Problem mehr als 1.5 Millionen Schritte, in Matlab ist Situation noch schlechter.</p>
+<p>Es geht aber auch in Julia noch ein bisschen besser, und zwar wenn man dem Lösungsverfahren einen Tipp gibt und dazusagt, dass es sich um eine steife Differentialgleichung handelt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Näherungslösung</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">alg_hints</span><span class="o">=</span><span class="p">[</span><span class="ss">:stiff</span><span class="p">])</span><span class="w"></span>
+
+<span class="c"># Ausgabe</span><span class="w"></span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;N = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">],</span><span class="w"> </span><span class="n">markershape</span><span class="o">=</span><span class="ss">:circle</span><span class="p">,</span><span class="w"> </span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N = 300
+</pre></div>
+</div>
+<img alt="_images/04-anfangswertprobleme_20_1.svg" src="_images/04-anfangswertprobleme_20_1.svg" /></div>
+</div>
+<p>Der Unterschied in Rechenzeit ist vernachlässigbar, es wird aber eine etwas geringere Anzahl von Schritten benötigt.</p>
+<p>Anmerkungen:</p>
+<ul class="simple">
+<li><p>Der Begriff ‘steife Differentialgleichung’ wird in der Literatur nicht einheitlich verwendet. Vereinfacht kann man sagen, dass eine DGL steif ist, wenn explizite Verfahren nicht gut funktionieren</p></li>
+<li><p>Steife DGLn lassen sich häufig mit impliziten Verfahren (zum Beispiel BDF) besser lösen. Bei impliziten Verfahren steht in der Iterationsvorschrift das Ergebnis am Ende des Zeitschritts auch rechts vom Gleichheitszeichen, weshalb ein i.Allg. nichtlineares Gleichungssystem gelöst werden muss.</p></li>
+</ul>
+</section>
+<section id="differentialgleichungen-mit-massenmatrix">
+<h2>Differentialgleichungen mit Massenmatrix<a class="headerlink" href="#differentialgleichungen-mit-massenmatrix" title="Permalink to this headline">#</a></h2>
+<p>Besitzt das System von Differentialgleichungen die Form</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{M} \dot{\mathbf{y}}(t) = \mathbf{F}(t, \mathbf{y}(t))
+\]</div>
+<p>dann wird die Matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> Massenmatrix genannt. Hierzu ein konkretes Beispiel, das den Temperaturausgleich zwischen zwei Körpern unterschiedlicher Anfangstemperatur beschreibt:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{cc}
+3000 &amp; 0 \\ 
+0 &amp; 3000
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+\dot \theta_1 \\
+\dot \theta_2
+\end{array}
+\right)
+=
+-
+\left(
+\begin{array}{rr}
+1 &amp; -1 \\ 
+-1 &amp; 1
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+\theta_1 \\
+\theta_2
+\end{array}
+\right)
+\quad \text{und} \quad
+\theta(0) = 
+\left(
+\begin{array}{c}
+10 \\ 0
+\end{array}
+\right)
+\end{split}\]</div>
+<p>Hier die beiden Matrizen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">3000</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">3000</span><span class="p">];</span><span class="w"></span>
+<span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">DifferentialEquations</span></code> kann man diese spezielle Form einer Differentialgleichung mithlfe von <code class="docutils literal notranslate"><span class="pre">ODEFunction</span></code> definieren, wenn die Massenmatrix mit angegeben wird. Man hätte natürlich auch die DGL mit der Inversen der Massenmatrix durchmultiplizieren können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">K</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="n">FM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEFunction</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">mass_matrix</span><span class="o">=</span><span class="n">M</span><span class="p">)</span><span class="w"></span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">FM</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3600</span><span class="p">])</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-anfangswertprobleme_25_0.svg" src="_images/04-anfangswertprobleme_25_0.svg" /></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.8"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.8",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.8'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03-plotten.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Plots erstellen</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthias Baitsch<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
