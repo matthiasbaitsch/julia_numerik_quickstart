@@ -656,7 +656,7 @@ Damit können wir das Anfangswertproblem für gegebene Werte <span class="math n
 </div>
 <img alt="_images/04-anfangswertprobleme_18_1.svg" src="_images/04-anfangswertprobleme_18_1.svg" /></div>
 </div>
-<p>Das Standardverfahren funktioniert hier sehr gut, die Funktion <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> aus dem Python scipy Paket berechnet für diese Problem mehr als 1.5 Millionen Schritte, in Matlab ist Situation noch schlechter.</p>
+<p>Das Standardverfahren funktioniert hier sehr gut, das spricht für die Umsetzung im Paket <code class="docutils literal notranslate"><span class="pre">DifferentialEquations</span></code>. In Python und Matlab ist das leider nicht der Fall, die Funktion <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> aus dem Python scipy Paket berechnet für diese Problem mehr als 1.5 Millionen Schritte, in Matlab sind es sogar mehr als 6 Millionen.</p>
 <p>Es geht aber auch in Julia noch ein bisschen besser, und zwar wenn man dem Lösungsverfahren einen Tipp gibt und dazusagt, dass es sich um eine steife Differentialgleichung handelt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
