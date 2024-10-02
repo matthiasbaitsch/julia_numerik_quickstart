@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: ../_build
 lang: de
 
 book:
@@ -11,7 +12,6 @@ book:
     - 01-julia.qmd
     - 02-vektoren-und-matrizen.qmd
     - 03-plotten.qmd
-    - 04-anfangswertprobleme.qmd
 
 format:
   html:

@@ -1,0 +1,43 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+
+  build-test:
+    name: Build, test and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+      - name: Checkout
+        uses: actions/checkout@v4        
+      - name: Render
+        run: cd 01-skript && quarto render --execute
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build'
+      - name: Cache Julia packages
+        uses: julia-actions/cache@v1
+
+  deploy:
+    needs: build-test
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    steps:    
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
