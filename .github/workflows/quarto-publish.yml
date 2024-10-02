@@ -12,7 +12,7 @@ permissions:
 jobs:
 
   build-test:
-    name: Build, test and deploy
+    name: Render
     runs-on: ubuntu-latest
     steps:
       - name: Set up Quarto
@@ -31,6 +31,7 @@ jobs:
         uses: julia-actions/cache@v1
 
   deploy:
+    name: Deploy
     needs: build-test
     environment:
       name: github-pages
