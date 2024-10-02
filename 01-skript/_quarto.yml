@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: ../_build
+  output-dir: ../_build/skript
 
 lang: de
 
