@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: ../_build
+
 lang: de
 
 book:
@@ -19,4 +20,3 @@ format:
   pdf:
     documentclass: scrreprt
 
-fig-format: png

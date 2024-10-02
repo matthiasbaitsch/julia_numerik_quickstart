@@ -10,9 +10,7 @@ permissions:
   id-token: write
 
 jobs:
-
-  build-test:
-    name: Render
+  render:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Quarto
@@ -20,9 +18,11 @@ jobs:
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
       - name: Checkout
-        uses: actions/checkout@v4        
+        uses: actions/checkout@v4     
+      - name: Install rsvg-convert
+        run: sudo apt-get install librsvg2-bin
       - name: Render
-        run: cd 01-skript && quarto render --execute
+        run: quarto render 01-skript
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -31,8 +31,7 @@ jobs:
         uses: julia-actions/cache@v1
 
   deploy:
-    name: Deploy
-    needs: build-test
+    needs: render
     environment:
       name: github-pages
     runs-on: ubuntu-latest

@@ -221,6 +221,7 @@ x .* y
 Funktionen aus dem Bereich der linearen Algebra, etwa zum Lösen linearer Gleichungssysteme, befinden sich im Paket `LinearAlgebra`, das zunächst installiert werden muss. Das geht beispielsweise so:
 
 ```{julia}
+#| echo: false
 using Pkg
 Pkg.add("LinearAlgebra")
 ```
