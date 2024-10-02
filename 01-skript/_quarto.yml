@@ -18,3 +18,5 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+
+fig-format: png
